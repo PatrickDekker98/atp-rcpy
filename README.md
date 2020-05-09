@@ -73,6 +73,36 @@ Functions are then called like this:
 :potatos, onions; cook potatos
 ```
 The parameters are specified left of the function call.
+## Fibonachi
+Here's a fibonachi example:
+```
+300 onions
+0 potatos
+
+0 scalops
+1 lettuce
+1 index
+
+1 loop
+
+if: onions < 1; (
+    0 loop
+)
+
+if: loop ; (
+    while: index < onions ; (
+        lettuce stash
+        lettuce + scalops lettuce
+        stash scalops
+
+        index + 1 index
+    )
+    lettuce potatos
+)
+
+serve potatos
+
+```
 ## Limitations
 ### Negativity
 Negative ingedients don't exist, that would be stupid...
