@@ -9,9 +9,7 @@ if __name__ == '__main__':
     chars = fileIn.read()
     fileIn.close()
     tokens = lexer.rcpy_lex(chars) 
-    print(tokens)
     ast = parser.parse(tokens)
-    print(ast)
     ret = run.run(ast)
     print(ret)
 

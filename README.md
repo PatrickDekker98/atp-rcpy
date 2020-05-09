@@ -103,6 +103,11 @@ if: loop ; (
 serve potatos
 
 ```
+## How to run
+In your commandline, type:
+```
+python3 rcpy.py whatheverfileyouwanttocall.rcpy
+```
 ## Limitations
 ### Negativity
 Negative ingedients don't exist, that would be stupid...

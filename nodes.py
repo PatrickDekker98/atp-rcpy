@@ -208,28 +208,28 @@ def name_expr(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple
 """
 @brief function that parses a int token 
 """
-def int_expr(tokens, ast):
+def int_expr(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     ast.append(int_a_expression(int(tokens.pop(0)[1])))
     return (tokens, ast)
 
 """
 @brief function that parses a float token
 """
-def float_expr(tokens, ast):
+def float_expr(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     ast.append(float_a_expression(float(tokens.pop(0)[1])))
     return (tokens, ast)
 
 """
 @brief function that parses a eol token
 """
-def eol_expr(tokens, ast):
+def eol_expr(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop(0)
     return (tokens, ast)
 
 """
 @brief function that parses a assign token
 """
-def assign_expr(tokens, ast):
+def assign_expr(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop(0)
     ast.append(assign_statement(name_a_expression(tokens.pop(0)[1]), ast.pop()))
     return (tokens, ast)
@@ -237,7 +237,7 @@ def assign_expr(tokens, ast):
 """
 @brief function that parses a bin op token
 """
-def bin_op_expr(tokens, ast):
+def bin_op_expr(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     token = tokens.pop(0)
     val = ast.pop()
     tokens, ast = nodes_dict[tokens[0][0]](tokens, ast)
@@ -247,11 +247,11 @@ def bin_op_expr(tokens, ast):
 """
 @brief function finds a condition after an if or while statement
 """
-def find_cond(tokens, ast):
+def find_cond(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop(0)
     return r_find_cond(tokens, ast)
 
-def r_find_cond(tokens, ast):
+def r_find_cond(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     if tokens[0][0] == tkns.PARAMETER_END:
         tokens.pop(0)
         return tokens, ast
@@ -262,7 +262,7 @@ def r_find_cond(tokens, ast):
 """
 @brief function that finds a code block, for a if of while statement or for a function
 """
-def find_block(tokens, ast):
+def find_block(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop(0)
     tokens, block = r_find_block(tokens, list())
     ast.append(block)
@@ -280,7 +280,7 @@ def r_find_block(tokens, block):
 """
 @brief function that parses an if condition
 """
-def if_cond(tokens, ast):
+def if_cond(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop(0)
     tokens, ast = find_cond(tokens, ast)
     cond = ast.pop()
@@ -291,7 +291,7 @@ def if_cond(tokens, ast):
 """
 @brief function that parses a while condition
 """
-def while_cond(tokens, ast):
+def while_cond(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop(0)
     tokens, ast = find_cond(tokens, ast)
     cond = ast.pop()
@@ -302,7 +302,7 @@ def while_cond(tokens, ast):
 """
 @brief function that parses a bin op token
 """
-def retaltional_expr(tokens, ast):
+def retaltional_expr(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     token = tokens.pop(0)
     val = ast.pop() 
     tokens, ast = nodes_dict[tokens[0][0]](tokens, ast)
@@ -312,13 +312,13 @@ def retaltional_expr(tokens, ast):
 """
 @brief function that parses a return token
 """
-def return_expr(tokens, ast):
+def return_expr(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop(0)
     tokens, ast = nodes_dict[tokens[0][0]](tokens, ast)
     ast.append(return_statement(ast.pop()))
     return (tokens, ast)
 
-def find_params(tokens, ast):
+def find_params(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop(0)
     tokens, params = r_find_params(tokens, list())
     ast.append(params)
@@ -331,7 +331,7 @@ def r_find_params(tokens, params):
     tokens, params = nodes_dict[tokens[0][0]](tokens, params)
     return r_find_params(tokens, params)
 
-def function_expr(tokens, ast):
+def function_expr(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop()
     tokens, ast = nodes_dict[tokens[0][0]](tokens, ast)
     params = ast.pop()
@@ -339,7 +339,7 @@ def function_expr(tokens, ast):
     ast.append(function_a_expression(params, ast.pop()))
     return (tokens, ast)
 
-def function_dec_stat(tokens, ast):
+def function_dec_stat(tokens: List[Tuple[str,str]], ast: List[node]) -> Tuple[List[Tuple[str,str]], List[node]]:
     tokens.pop(0)
     tokens, ast = nodes_dict[tokens[0][0]](tokens, ast)
     name = ast.pop()
