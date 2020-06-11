@@ -3,3 +3,6 @@
 
 onions < scalops = potatos
 
+onions / 0 = onions
+
+serve onions

@@ -4,6 +4,8 @@ FLOAT = 'FLOAT'
 
 MINUS = 'MINUS'
 PLUS = 'PLUS'
+MULTIPLY = 'MULTIPLY'
+DIVIDE = 'DIVIDE'
 ASSIGN = 'ASSIGN'
 
 EOL = 'EOL'
@@ -53,6 +55,8 @@ standard_tokens = {
         ',': DIVIDER,
         '-': MINUS,
         '+': PLUS,
+        '*': MULTIPLY,
+        '/': DIVIDE,
         '<': GT,
         '>': LT,
         '=': ASSIGN,

@@ -356,6 +356,8 @@ nodes_dict = {
         tkns.ASSIGN: assign_expr,
         tkns.MINUS: bin_op_expr,
         tkns.PLUS: bin_op_expr,
+        tkns.MULTIPLY: bin_op_expr,
+        tkns.DIVIDE: bin_op_expr,
         tkns.IF: if_cond,
         tkns.WHILE: while_cond,
         tkns.EQ: retaltional_expr,

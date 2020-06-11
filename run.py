@@ -18,22 +18,22 @@ class program_state():
     def __repr__(self):
         return self.__str__()
 
-class error():
-    def __init__(self, error_msg : str):
-        self.error_msg = error_msg
+#class error():
+#    def __init__(self, error_msg : str):
+#        self.error_msg = error_msg
+#
+#    def __str__(self):
+#        return 'error(%s)' % self.error_msg
+#
+#    def __repr__(self):
+#        return self.__str__()
 
-    def __str__(self):
-        return 'error(%s)' % self.error_msg
-
-    def __repr__(self):
-        return self.__str__()
-
-def smart_divide(f : Callable[[T, T], float]) -> float:
-    def inner(a, b):
-        if b == 0:
-            return error("you fucking donkey!")
-        return f(a, b)
-    return inner
+#def smart_divide(f : Callable[[T, T], float]) -> float:
+#    def inner(a, b):
+#        if b == 0:
+#            return error("you fucking donkey!")
+#        return f(a, b)
+#    return inner
 
 rel_operator_dict = {
         '==': operator_funcs.eq,
@@ -49,7 +49,8 @@ bin_operator_dict = {
         '+': operator_funcs.add,
         '-': operator_funcs.minus,
         '*': operator_funcs.mul,
-        '/': smart_divide(operator_funcs.divide)
+        '/': operator_funcs.divide
+        #'/': smart_divide(operator_funcs.divide)
         }
 
 def eval_int_expr(int_exp : nodes.int_a_expression, ps : program_state) -> int:
